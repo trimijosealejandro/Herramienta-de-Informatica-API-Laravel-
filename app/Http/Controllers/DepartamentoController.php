@@ -39,7 +39,7 @@ class DepartamentoController extends Controller
     //PUT Actualiza un registro con los datos enviados por parametro
     public function update(Request $request, Departamento $departamento)
     {
-        $data=>$request()->all();
+        $data=$request->all();
         $departamento->update($data);
         return response()->json([
             'res'=>true,
@@ -51,7 +51,7 @@ class DepartamentoController extends Controller
     public function destroy($id)
     {
         Departamento::destroy($id);
-        return return response()->json([
+        return response()->json([
             'res'=>true,
             'mesagge'=>'Departamento eliminado correctamente'
         ],200);
