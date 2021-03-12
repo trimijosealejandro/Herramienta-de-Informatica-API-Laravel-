@@ -15,6 +15,17 @@ class CreateInspeccionsTable extends Migration
     {
         Schema::create('inspeccions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 100)->nullable()->default('inspección');
+            $table->dateTime('fecha')->nullable();
+            $table->string('area',100 )->nullable()->default('departamento');
+            $table->string('participantes', 100)->nullable()->default('técnico');
+            $table->string('situacion_detectada', 100)->nullable()->default('situación');
+            $table->string('plan_medida', 100)->nullable()->default('solución');
+            $table->string('responsable', 100)->nullable()->default('técnico');
+            $table->dateTime('fecha_solucionar')->nullable();
+            //Llave foranea de Inspeccion
+            $table->integer('pcs_id')->unsigned();
+            $table->foreign('pcs_id')->references('id')->on('pcs');
             $table->timestamps();
         });
     }

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Inspeccion;
+use Illuminate\Support\Str;
 
 class InspeccionSeeder extends Seeder
 {
@@ -11,6 +13,23 @@ class InspeccionSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $pc= DB::table('pcs')->select('id')->first();
+
+        factory(Inspeccion::Class)->create([
+            'name'=>Str::random(5),
+            'pcs_id'=>$pc->id,
+        ]);
+        factory(Inspeccion::Class)->create([
+            'name'=>Str::random(5),
+            'pcs_id'=>$pc->id,
+        ]);
+        factory(Inspeccion::Class)->create([
+            'name'=>Str::random(5),
+            'pcs_id'=>$pc->id,
+        ]);
+        factory(Inspeccion::Class)->create([
+            'name'=>Str::random(5),
+            'pcs_id'=>$pc->id,
+        ]);
     }
 }

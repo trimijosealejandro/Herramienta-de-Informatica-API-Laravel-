@@ -23,7 +23,7 @@ class PcController extends Controller
     public function store(Request $request, Departamento $departamento)
     {
         if($departamento){
-            $data=$request->all();
+            $data = $request->all();
             $pc = new Pc($data);
             $departamento->pc()->save($pc);
             return response()->json([

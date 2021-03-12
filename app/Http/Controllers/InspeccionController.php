@@ -2,84 +2,95 @@
 
 namespace App\Http\Controllers;
 
-use App\Inspeccion;
 use Illuminate\Http\Request;
+use App\Departamento;
+use App\Inspeccion;
+use App\Pc;
 
 class InspeccionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    //GET devuelve un listado de la tabla inspeccions
+    public function index(Request $request, Departamento $departamento, Pc $pc)
     {
-        //
+        if($departamento && $pc){
+            if($request->has('txtBuscar')){
+                $inspeccion=Inspeccion::Where('name','like','%'.$request->txtBuscar.'%')->get();
+            }else{
+                $inspeccion=Inspeccion::all();
+            }
+            return $inspeccion;
+        }else{
+            return response()->json([
+                'res'=>false,
+                'message'=>'El departamento o la pc no existen'
+            ],200);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    //POST Inserta un registro en la tabla inspeccions
+    public function store(Request $request, Departamento $departamento, Pc $pcs)
     {
-        //
+        if($departamento && $pcs){
+            $data = $request->all();
+            $inspeccion = new Inspeccion($data);
+            $pcs->inspeccion()->save($inspeccion);
+            return response()->json([
+                'res'=>true,
+                'message'=>'Creada la inspeccion correctamente'
+            ],200);
+        }else{
+            return response()->json([
+                'res'=>false,
+                'message'=>'El departamento o la pc no existen'
+            ],200);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    // GET Muestra un registro de la tabla inspeccions
+    public function show(Departamento $departamento, Pc $pcs, Inspeccion $inspeccion)
     {
-        //
+        if($departamento && $pcs && $inspeccion){
+            return $inspeccion;
+        }else{
+            return response()->json([
+                'res'=>false,
+                'message'=>'El departamento o la pc o la inspeccion no existen'
+            ],200);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Inspeccion  $inspeccion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Inspeccion $inspeccion)
+    //PUT Actualiza un registro en la tabla inspeccions
+    public function update(Request $request, Departamento $departamento, Pc $pcs, Inspeccion $inspeccion)
     {
-        //
+        if($departamento && $pcs && $inspeccion){
+            $data=$request->all();
+            $inspeccion->update($data);
+            return response()->json([
+                'res'=>true,
+                'message'=>'Actualizada la inspeccion correctamente'
+            ],200);
+        }else{
+            return response()->json([
+                'res'=>false,
+                'message'=>'El departamento o la pc o la inspeccion no existen'
+            ],200);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Inspeccion  $inspeccion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Inspeccion $inspeccion)
+    //DELETE Elimina una registro de la tabla inspeccions
+    public function destroy( Departamento $departamento, Pc $pcs, $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Inspeccion  $inspeccion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Inspeccion $inspeccion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Inspeccion  $inspeccion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Inspeccion $inspeccion)
-    {
-        //
+        if($departamento && $pc){
+            Inspeccion::destroy($id);
+            return response()->json([
+                'res'=>true,
+                'message'=>'Eliminada la inspeccion correctamente'
+            ],200);
+        }else{
+            return response()->json([
+                'res'=>false,
+                'message'=>'El departamento o la pc o la inspeccion no existen'
+            ],200);
+        }
     }
 }

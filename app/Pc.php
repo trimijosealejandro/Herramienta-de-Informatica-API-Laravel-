@@ -77,32 +77,32 @@ class Pc extends Model
     {
         return $this->belongsToMany('App\Departamento','departamentos_id');
     }
-  /*  public function inspeccion()
+    public function inspeccion()
    {
-       return $this->hasMany('App\Expedientes\Inspeccion');
+       return $this->hasMany('App\Inspeccion');
    }
    public function soporte()
    {
-       return $this->hasMany('App\Expedientes\Soporte');
+       return $this->hasMany('App\Soporte');
    }
    public function software()
    {
-       return $this->hasMany('App\Expedientes\Software');
+       return $this->hasMany('App\Software');
    }
    public function mantenimiento()
    {
-       return $this->hasMany('App\Expedientes\Mantenimiento');
+       return $this->hasMany('App\Mantenimiento');
    }
    public function incidencia()
    {
-       return $this->hasMany('App\Expedientes\Incidencia');
+       return $this->hasMany('App\Incidencia');
    }
    public function seguridad()
    {
-       return $this->hasMany('App\Expedientes\seguridad');
+       return $this->hasMany('App\seguridad');
    }
    public function movimientoPc()
    {
-       return $this->hasMany('App\Expedientes\MovimientoPc');
-   } */
+       return $this->hasMany('App\MovimientoPc');
+   }
 }
