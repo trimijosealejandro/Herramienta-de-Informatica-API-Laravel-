@@ -9,12 +9,14 @@ use App\Pc;
 class PcController extends Controller
 {
     //GET Devuelve una lista de la tabal pcs filtrada por parametro
-    public function index(Request $request)
+    public function index(Request $request, Departamento $departamento)
     {
         if($request->has('txtBuscar')){
-            $pcs=Pc::Where('name','like','%'.$request->txtBuscar.'%')->get();
+            $pcs=Pc::Where('name','like','%'.$request->txtBuscar.'%')
+            ->Where('departamentos_id','like',$departamento->id)
+            ->get();
         }else{
-            $pcs=Pc::all();
+            $pcs=Pc::Where('departamentos_id','like',$departamento->id)->get();
         }
         return $pcs;
     }
@@ -40,11 +42,13 @@ class PcController extends Controller
 
     }
 
-    //GET muestr un registro de la tabla pcs
-    public function show(Departamento $departamento, Pc $pcs)
+    //GET muestra un registro de la tabla pcs
+    public function show(Departamento $departamento, Pc $pc)
     {
+
         if($departamento){
-            return $pcs;
+            return $pc;
+
         }else{
             return response()->json([
                 'res'=>false,
@@ -54,11 +58,11 @@ class PcController extends Controller
     }
 
     //PUT Actualiza un registro de la tabla pcs
-    public function update(Request $request,Departamento $departamento, Pc $pcs)
+    public function update(Request $request,Departamento $departamento, Pc $pc)
     {
         if($departamento){
             $data=$request->all();
-            $pcs->update($data);
+            $pc->update($data);
             return response()->json([
                 'res'=>true,
                 'message'=>'Actualizada la Pc correctamente'

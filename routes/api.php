@@ -16,14 +16,23 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('login',function(){});
 
-Route::apiResource('departamento','DepartamentoController');
-Route::apiResource('departamento.pc','PcController');
-Route::apiResource('departamento.pc.inspeccion','InspeccionController');
-Route::apiResource('departamento.pc.soporte','SoporteController');
-Route::apiResource('departamento.pc.software','SoftwareController');
-Route::apiResource('departamento.pc.mantenimiento','MantenimientoController');
-Route::apiResource('departamento.pc.incidencia','IncidenciaController');
-Route::apiResource('departamento.pc.seguridad','SeguridadController');
-Route::apiResource('departamento.pc.movimientoPc','MovimientoPcController');
+Route::post('register',function(){});
+
+/* Route::group('auth:api', function(){
+    [ */
+    Route::apiResource('departamento','DepartamentoController');
+    Route::apiResource('departamento.pc','PcController');
+    Route::apiResource('departamento.pc.inspeccion','InspeccionController');
+    Route::apiResource('departamento.pc.soporte','SoporteController');
+    Route::apiResource('departamento.pc.software','SoftwareController');
+    Route::apiResource('departamento.pc.mantenimiento','MantenimientoController');
+    Route::apiResource('departamento.pc.incidencia','IncidenciaController');
+    Route::apiResource('departamento.pc.seguridad','SeguridadController');
+    Route::apiResource('departamento.pc.movimientoPc','MovimientoPcController');
+   /*  Route::get('logout',function(){}),
+    ]
+}); */
+
 

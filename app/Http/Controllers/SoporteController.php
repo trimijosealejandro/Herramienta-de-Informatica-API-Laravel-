@@ -28,12 +28,12 @@ class SoporteController extends Controller
     }
 
     //POST Inserta un registro en la tabla Soportes
-    public function store(Request $request, Departamento $departamento, Pc $pcs)
+    public function store(Request $request, Departamento $departamento, Pc $pc)
     {
-        if($departamento && $pcs){
+        if($departamento && $pc){
             $data = $request->all();
             $Soporte = new Soporte($data);
-            $pcs->Soporte()->save($Soporte);
+            $pc->Soporte()->save($Soporte);
             return response()->json([
                 'res'=>true,
                 'message'=>'Creada la Soporte correctamente'
@@ -47,9 +47,9 @@ class SoporteController extends Controller
     }
 
     // GET Muestra un registro de la tabla Soportes
-    public function show(Departamento $departamento, Pc $pcs, Soporte $Soporte)
+    public function show(Departamento $departamento, Pc $pc, Soporte $Soporte)
     {
-        if($departamento && $pcs && $Soporte){
+        if($departamento && $pc && $Soporte){
             return $Soporte;
         }else{
             return response()->json([
@@ -60,9 +60,9 @@ class SoporteController extends Controller
     }
 
     //PUT Actualiza un registro en la tabla Soportes
-    public function update(Request $request, Departamento $departamento, Pc $pcs, Soporte $Soporte)
+    public function update(Request $request, Departamento $departamento, Pc $pc, Soporte $Soporte)
     {
-        if($departamento && $pcs && $Soporte){
+        if($departamento && $pc && $Soporte){
             $data=$request->all();
             $Soporte->update($data);
             return response()->json([
@@ -78,7 +78,7 @@ class SoporteController extends Controller
     }
 
     //DELETE Elimina una registro de la tabla Soportes
-    public function destroy( Departamento $departamento, Pc $pcs, $id)
+    public function destroy( Departamento $departamento, Pc $pc, $id)
     {
         if($departamento && $pc){
             Soporte::destroy($id);

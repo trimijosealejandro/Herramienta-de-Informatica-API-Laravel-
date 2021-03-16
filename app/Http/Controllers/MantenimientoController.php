@@ -28,12 +28,12 @@ class MantenimientoController extends Controller
     }
 
     //POST Inserta un registro en la tabla Mantenimientos
-    public function store(Request $request, Departamento $departamento, Pc $pcs)
+    public function store(Request $request, Departamento $departamento, Pc $pc)
     {
-        if($departamento && $pcs){
+        if($departamento && $pc){
             $data = $request->all();
             $Mantenimiento = new Mantenimiento($data);
-            $pcs->Mantenimiento()->save($Mantenimiento);
+            $pc->Mantenimiento()->save($Mantenimiento);
             return response()->json([
                 'res'=>true,
                 'message'=>'Creada la Mantenimiento correctamente'
@@ -47,9 +47,9 @@ class MantenimientoController extends Controller
     }
 
     // GET Muestra un registro de la tabla Mantenimientos
-    public function show(Departamento $departamento, Pc $pcs, Mantenimiento $Mantenimiento)
+    public function show(Departamento $departamento, Pc $pc, Mantenimiento $Mantenimiento)
     {
-        if($departamento && $pcs && $Mantenimiento){
+        if($departamento && $pc && $Mantenimiento){
             return $Mantenimiento;
         }else{
             return response()->json([
@@ -60,9 +60,9 @@ class MantenimientoController extends Controller
     }
 
     //PUT Actualiza un registro en la tabla Mantenimientos
-    public function update(Request $request, Departamento $departamento, Pc $pcs, Mantenimiento $Mantenimiento)
+    public function update(Request $request, Departamento $departamento, Pc $pc, Mantenimiento $Mantenimiento)
     {
-        if($departamento && $pcs && $Mantenimiento){
+        if($departamento && $pc && $Mantenimiento){
             $data=$request->all();
             $Mantenimiento->update($data);
             return response()->json([
@@ -78,7 +78,7 @@ class MantenimientoController extends Controller
     }
 
     //DELETE Elimina una registro de la tabla Mantenimientos
-    public function destroy( Departamento $departamento, Pc $pcs, $id)
+    public function destroy( Departamento $departamento, Pc $pc, $id)
     {
         if($departamento && $pc){
             Mantenimiento::destroy($id);

@@ -79,30 +79,30 @@ class Pc extends Model
     }
     public function inspeccion()
    {
-       return $this->hasMany('App\Inspeccion');
+       return $this->hasMany('App\Inspeccion','pcs_id');
    }
    public function soporte()
    {
-       return $this->hasMany('App\Soporte');
+       return $this->hasMany('App\Soporte','pcs_id');
    }
    public function software()
    {
-       return $this->hasMany('App\Software');
+       return $this->hasMany('App\Software','pcs_id');
    }
    public function mantenimiento()
    {
-       return $this->hasMany('App\Mantenimiento');
+       return $this->hasMany('App\Mantenimiento','pcs_id');
    }
    public function incidencia()
    {
-       return $this->hasMany('App\Incidencia');
+       return $this->hasMany('App\Incidencia','pcs_id');
    }
    public function seguridad()
    {
-       return $this->hasMany('App\seguridad');
+       return $this->hasMany('App\seguridad','pcs_id');
    }
    public function movimientoPc()
    {
-       return $this->hasMany('App\MovimientoPc');
+       return $this->hasMany('App\MovimientoPc','pcs_id');
    }
 }

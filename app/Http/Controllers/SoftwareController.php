@@ -28,12 +28,12 @@ class SoftwareController extends Controller
     }
 
     //POST Inserta un registro en la tabla Softwares
-    public function store(Request $request, Departamento $departamento, Pc $pcs)
+    public function store(Request $request, Departamento $departamento, Pc $pc)
     {
-        if($departamento && $pcs){
+        if($departamento && $pc){
             $data = $request->all();
             $Software = new Software($data);
-            $pcs->Software()->save($Software);
+            $pc->Software()->save($Software);
             return response()->json([
                 'res'=>true,
                 'message'=>'Creada la Software correctamente'
@@ -47,9 +47,9 @@ class SoftwareController extends Controller
     }
 
     // GET Muestra un registro de la tabla Softwares
-    public function show(Departamento $departamento, Pc $pcs, Software $Software)
+    public function show(Departamento $departamento, Pc $pc, Software $Software)
     {
-        if($departamento && $pcs && $Software){
+        if($departamento && $pc && $Software){
             return $Software;
         }else{
             return response()->json([
@@ -60,9 +60,9 @@ class SoftwareController extends Controller
     }
 
     //PUT Actualiza un registro en la tabla Softwares
-    public function update(Request $request, Departamento $departamento, Pc $pcs, Software $Software)
+    public function update(Request $request, Departamento $departamento, Pc $pc, Software $Software)
     {
-        if($departamento && $pcs && $Software){
+        if($departamento && $pc && $Software){
             $data=$request->all();
             $Software->update($data);
             return response()->json([
@@ -78,7 +78,7 @@ class SoftwareController extends Controller
     }
 
     //DELETE Elimina una registro de la tabla Softwares
-    public function destroy( Departamento $departamento, Pc $pcs, $id)
+    public function destroy( Departamento $departamento, Pc $pc, $id)
     {
         if($departamento && $pc){
             Software::destroy($id);
