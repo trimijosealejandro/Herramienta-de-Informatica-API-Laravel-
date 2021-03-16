@@ -13,6 +13,6 @@ class Departamento extends Model
     ];
     public function pc()
     {
-        return $this->hasMany('App\Pc');
+        return $this->hasMany('App\Pc','departamentos_id');
     }
 }

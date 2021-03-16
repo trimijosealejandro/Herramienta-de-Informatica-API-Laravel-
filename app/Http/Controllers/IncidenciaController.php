@@ -28,12 +28,12 @@ class IncidenciaController extends Controller
     }
 
     //POST Inserta un registro en la tabla Incidencias
-    public function store(Request $request, Departamento $departamento, Pc $pcs)
+    public function store(Request $request, Departamento $departamento, Pc $pc)
     {
-        if($departamento && $pcs){
+        if($departamento && $pc){
             $data = $request->all();
             $Incidencia = new Incidencia($data);
-            $pcs->Incidencia()->save($Incidencia);
+            $pc->Incidencia()->save($Incidencia);
             return response()->json([
                 'res'=>true,
                 'message'=>'Creada la Incidencia correctamente'
@@ -47,10 +47,10 @@ class IncidenciaController extends Controller
     }
 
     // GET Muestra un registro de la tabla Incidencias
-    public function show(Departamento $departamento, Pc $pcs, Incidencia $Incidencia)
+    public function show(Departamento $departamento, Pc $pc, Incidencia $incidencium)
     {
-        if($departamento && $pcs && $Incidencia){
-            return $Incidencia;
+        if($departamento && $pc && $incidencium){
+            return $incidencium;
         }else{
             return response()->json([
                 'res'=>false,
@@ -60,11 +60,11 @@ class IncidenciaController extends Controller
     }
 
     //PUT Actualiza un registro en la tabla Incidencias
-    public function update(Request $request, Departamento $departamento, Pc $pcs, Incidencia $Incidencia)
+    public function update(Request $request, Departamento $departamento, Pc $pc, Incidencia $incidencium)
     {
-        if($departamento && $pcs && $Incidencia){
+        if($departamento && $pc && $incidencium){
             $data=$request->all();
-            $Incidencia->update($data);
+            $incidencium->update($data);
             return response()->json([
                 'res'=>true,
                 'message'=>'Actualizada la Incidencia correctamente'
@@ -78,7 +78,7 @@ class IncidenciaController extends Controller
     }
 
     //DELETE Elimina una registro de la tabla Incidencias
-    public function destroy( Departamento $departamento, Pc $pcs, $id)
+    public function destroy( Departamento $departamento, Pc $pc, $id)
     {
         if($departamento && $pc){
             Incidencia::destroy($id);

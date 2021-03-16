@@ -28,12 +28,12 @@ class MovimientoPcController extends Controller
     }
 
     //POST Inserta un registro en la tabla MovimientoPcs
-    public function store(Request $request, Departamento $departamento, Pc $pcs)
+    public function store(Request $request, Departamento $departamento, Pc $pc)
     {
-        if($departamento && $pcs){
+        if($departamento && $pc){
             $data = $request->all();
             $MovimientoPc = new MovimientoPc($data);
-            $pcs->MovimientoPc()->save($MovimientoPc);
+            $pc->MovimientoPc()->save($MovimientoPc);
             return response()->json([
                 'res'=>true,
                 'message'=>'Creada la MovimientoPc correctamente'
@@ -47,10 +47,10 @@ class MovimientoPcController extends Controller
     }
 
     // GET Muestra un registro de la tabla MovimientoPcs
-    public function show(Departamento $departamento, Pc $pcs, MovimientoPc $MovimientoPc)
+    public function show(Departamento $departamento, Pc $pc, MovimientoPc $movimientoPc)
     {
-        if($departamento && $pcs && $MovimientoPc){
-            return $MovimientoPc;
+        if($departamento && $pc && $movimientoPc){
+            return $movimientoPc;
         }else{
             return response()->json([
                 'res'=>false,
@@ -60,11 +60,11 @@ class MovimientoPcController extends Controller
     }
 
     //PUT Actualiza un registro en la tabla MovimientoPcs
-    public function update(Request $request, Departamento $departamento, Pc $pcs, MovimientoPc $MovimientoPc)
+    public function update(Request $request, Departamento $departamento, Pc $pc, MovimientoPc $movimientoPc)
     {
-        if($departamento && $pcs && $MovimientoPc){
+        if($departamento && $pc && $movimientoPc){
             $data=$request->all();
-            $MovimientoPc->update($data);
+            $movimientoPc->update($data);
             return response()->json([
                 'res'=>true,
                 'message'=>'Actualizada la MovimientoPc correctamente'
@@ -78,7 +78,7 @@ class MovimientoPcController extends Controller
     }
 
     //DELETE Elimina una registro de la tabla MovimientoPcs
-    public function destroy( Departamento $departamento, Pc $pcs, $id)
+    public function destroy( Departamento $departamento, Pc $pc, $id)
     {
         if($departamento && $pc){
             MovimientoPc::destroy($id);

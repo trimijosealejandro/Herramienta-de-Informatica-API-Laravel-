@@ -9,16 +9,16 @@ use App\Pc;
 
 class InspeccionController extends Controller
 {
-    //GET devuelve un listado de la tabla inspeccions
+    //GET devuelve un listado de la tabla Inspeccions
     public function index(Request $request, Departamento $departamento, Pc $pc)
     {
         if($departamento && $pc){
             if($request->has('txtBuscar')){
-                $inspeccion=Inspeccion::Where('name','like','%'.$request->txtBuscar.'%')->get();
+                $Inspeccion=Inspeccion::Where('name','like','%'.$request->txtBuscar.'%')->get();
             }else{
-                $inspeccion=Inspeccion::all();
+                $Inspeccion=Inspeccion::all();
             }
-            return $inspeccion;
+            return $Inspeccion;
         }else{
             return response()->json([
                 'res'=>false,
@@ -27,16 +27,16 @@ class InspeccionController extends Controller
         }
     }
 
-    //POST Inserta un registro en la tabla inspeccions
-    public function store(Request $request, Departamento $departamento, Pc $pcs)
+    //POST Inserta un registro en la tabla Inspeccions
+    public function store(Request $request, Departamento $departamento, Pc $pc)
     {
-        if($departamento && $pcs){
+        if($departamento && $pc){
             $data = $request->all();
-            $inspeccion = new Inspeccion($data);
-            $pcs->inspeccion()->save($inspeccion);
+            $Inspeccion = new Inspeccion($data);
+            $pc->Inspeccion()->save($Inspeccion);
             return response()->json([
                 'res'=>true,
-                'message'=>'Creada la inspeccion correctamente'
+                'message'=>'Creada la Inspeccion correctamente'
             ],200);
         }else{
             return response()->json([
@@ -46,50 +46,50 @@ class InspeccionController extends Controller
         }
     }
 
-    // GET Muestra un registro de la tabla inspeccions
-    public function show(Departamento $departamento, Pc $pcs, Inspeccion $inspeccion)
+    // GET Muestra un registro de la tabla Inspeccions
+    public function show(Departamento $departamento, Pc $pc, Inspeccion $inspeccion)
     {
-        if($departamento && $pcs && $inspeccion){
+        if($departamento && $pc && $inspeccion){
             return $inspeccion;
         }else{
             return response()->json([
                 'res'=>false,
-                'message'=>'El departamento o la pc o la inspeccion no existen'
+                'message'=>'El departamento o la pc o la Inspeccion no existen'
             ],200);
         }
     }
 
-    //PUT Actualiza un registro en la tabla inspeccions
-    public function update(Request $request, Departamento $departamento, Pc $pcs, Inspeccion $inspeccion)
+    //PUT Actualiza un registro en la tabla Inspeccions
+    public function update(Request $request, Departamento $departamento, Pc $pc, Inspeccion $inspeccion)
     {
-        if($departamento && $pcs && $inspeccion){
+        if($departamento && $pc && $inspeccion){
             $data=$request->all();
             $inspeccion->update($data);
             return response()->json([
                 'res'=>true,
-                'message'=>'Actualizada la inspeccion correctamente'
+                'message'=>'Actualizada la Inspeccion correctamente'
             ],200);
         }else{
             return response()->json([
                 'res'=>false,
-                'message'=>'El departamento o la pc o la inspeccion no existen'
+                'message'=>'El departamento o la pc o la Inspeccion no existen'
             ],200);
         }
     }
 
-    //DELETE Elimina una registro de la tabla inspeccions
-    public function destroy( Departamento $departamento, Pc $pcs, $id)
+    //DELETE Elimina una registro de la tabla Inspeccions
+    public function destroy( Departamento $departamento, Pc $pc, $id)
     {
         if($departamento && $pc){
             Inspeccion::destroy($id);
             return response()->json([
                 'res'=>true,
-                'message'=>'Eliminada la inspeccion correctamente'
+                'message'=>'Eliminada la Inspeccion correctamente'
             ],200);
         }else{
             return response()->json([
                 'res'=>false,
-                'message'=>'El departamento o la pc o la inspeccion no existen'
+                'message'=>'El departamento o la pc o la Inspeccion no existen'
             ],200);
         }
     }

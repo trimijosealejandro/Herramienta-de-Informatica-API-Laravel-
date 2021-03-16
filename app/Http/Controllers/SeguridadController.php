@@ -28,12 +28,12 @@ class SeguridadController extends Controller
     }
 
     //POST Inserta un registro en la tabla Seguridads
-    public function store(Request $request, Departamento $departamento, Pc $pcs)
+    public function store(Request $request, Departamento $departamento, Pc $pc)
     {
-        if($departamento && $pcs){
+        if($departamento && $pc){
             $data = $request->all();
             $Seguridad = new Seguridad($data);
-            $pcs->Seguridad()->save($Seguridad);
+            $pc->Seguridad()->save($Seguridad);
             return response()->json([
                 'res'=>true,
                 'message'=>'Creada la Seguridad correctamente'
@@ -47,10 +47,10 @@ class SeguridadController extends Controller
     }
 
     // GET Muestra un registro de la tabla Seguridads
-    public function show(Departamento $departamento, Pc $pcs, Seguridad $Seguridad)
+    public function show(Departamento $departamento, Pc $pc, Seguridad $seguridad)
     {
-        if($departamento && $pcs && $Seguridad){
-            return $Seguridad;
+        if($departamento && $pc && $seguridad){
+            return $seguridad;
         }else{
             return response()->json([
                 'res'=>false,
@@ -60,11 +60,11 @@ class SeguridadController extends Controller
     }
 
     //PUT Actualiza un registro en la tabla Seguridads
-    public function update(Request $request, Departamento $departamento, Pc $pcs, Seguridad $Seguridad)
+    public function update(Request $request, Departamento $departamento, Pc $pc, Seguridad $seguridad)
     {
-        if($departamento && $pcs && $Seguridad){
+        if($departamento && $pc && $seguridad){
             $data=$request->all();
-            $Seguridad->update($data);
+            $seguridad->update($data);
             return response()->json([
                 'res'=>true,
                 'message'=>'Actualizada la Seguridad correctamente'
@@ -78,7 +78,7 @@ class SeguridadController extends Controller
     }
 
     //DELETE Elimina una registro de la tabla Seguridads
-    public function destroy( Departamento $departamento, Pc $pcs, $id)
+    public function destroy( Departamento $departamento, Pc $pc, $id)
     {
         if($departamento && $pc){
             Seguridad::destroy($id);
