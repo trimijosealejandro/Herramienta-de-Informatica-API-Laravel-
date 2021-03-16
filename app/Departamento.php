@@ -11,8 +11,8 @@ class Departamento extends Model
     protected $fillable=[
         'name',
     ];
-    /* public function pc()
+    public function pc()
     {
-        return $this->hasMany('App\Pc','departamentos_id');
-    } */
+        return $this->hasMany('App\Pc');
+    }
 }

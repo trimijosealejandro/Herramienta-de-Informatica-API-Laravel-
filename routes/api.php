@@ -18,3 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('departamento','DepartamentoController');
+Route::apiResource('departamento.pc','PcController');
+Route::apiResource('departamento.pc.inspeccion','InspeccionController');
+Route::apiResource('departamento.pc.soporte','SoporteController');
+Route::apiResource('departamento.pc.software','SoftwareController');
+Route::apiResource('departamento.pc.mantenimiento','MantenimientoController');
+Route::apiResource('departamento.pc.incidencia','IncidenciaController');
+Route::apiResource('departamento.pc.seguridad','SeguridadController');
+Route::apiResource('departamento.pc.movimientoPc','MovimientoPcController');
+

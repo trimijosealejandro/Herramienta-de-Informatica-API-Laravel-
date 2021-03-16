@@ -12,5 +12,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          $this->call(DepartamentoSeeder::class);
+         $this->call(PcSeeder::class);
+         $this->call(InspeccionSeeder::class);
+         $this->call(SoporteSeeder::class);
+         $this->call(SoftwareSeeder::class);
+         $this->call(MantenimientoSeeder::class);
+         $this->call(IncidenciaSeeder::class);
+         $this->call(SeguridadSeeder::class);
+         $this->call(MovimientoPcSeeder::class);
     }
 }
