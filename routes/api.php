@@ -16,12 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('login',function(){});
 
-Route::post('register',function(){});
+Route::post('login','UserController@login');
+Route::post('register','UserController@register');
 
-/* Route::group('auth:api', function(){
-    [ */
+ Route::group(['middleware'=>'auth:api'], function(){
     Route::apiResource('departamento','DepartamentoController');
     Route::apiResource('departamento.pc','PcController');
     Route::apiResource('departamento.pc.inspeccion','InspeccionController');
@@ -31,8 +30,7 @@ Route::post('register',function(){});
     Route::apiResource('departamento.pc.incidencia','IncidenciaController');
     Route::apiResource('departamento.pc.seguridad','SeguridadController');
     Route::apiResource('departamento.pc.movimientoPc','MovimientoPcController');
-   /*  Route::get('logout',function(){}),
-    ]
-}); */
+    Route::get('logout','UserController@logout');
+});
 
 
